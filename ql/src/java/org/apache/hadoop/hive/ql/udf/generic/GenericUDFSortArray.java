@@ -67,15 +67,11 @@ public class GenericUDFSortArray extends GenericUDF {
 
     switch(arguments[0].getCategory()) {
       case LIST:
-        if(((ListObjectInspector)(arguments[0])).getListElementObjectInspector()
-          .getCategory().equals(Category.PRIMITIVE)) {
-          break;
-        }
+        break;
       default:
         throw new UDFArgumentTypeException(0, "Argument 1"
-          + " of function SORT_ARRAY must be " + serdeConstants.LIST_TYPE_NAME
-          + "<" + Category.PRIMITIVE + ">, but " + arguments[0].getTypeName()
-          + " was found.");
+            + " of function SORT_ARRAY must be " + serdeConstants.LIST_TYPE_NAME
+            + ", but " + arguments[0].getTypeName() + " was found.");
     }
 
     ObjectInspector elementObjectInspector =
